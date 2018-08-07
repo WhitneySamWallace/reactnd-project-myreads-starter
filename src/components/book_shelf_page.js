@@ -10,11 +10,21 @@ class BookShelfPage extends Component {
         this.state = {
             books: []
         };
+        this.getAllBooks();
+    }
 
-        BooksAPI.getAll()
-        .then(booksFromApi => {
-            this.setState({ books: booksFromApi })
+        getAllBooks() {
+            BooksAPI.getAll()
+          .then(booksFromApi => {
+            this.setState({ books: booksFromApi });
         });
+    }
+
+    updateShelf(book, shelf) {
+        BooksAPI.update(book, shelf)
+        .then(data => {
+            this.getAllBooks();
+        })
     }
 
     render() {
@@ -25,9 +35,9 @@ class BookShelfPage extends Component {
             </div>
             <div className="list-books-content">
               <div>
-                <Bookshelf title="Currently Reading" books={this.state.books.filter(book => book.shelf == 'currentlyReading')} />
-                <Bookshelf title="Want to Read" books={this.state.books.filter(book => book.shelf == 'wantToRead')} />
-                <Bookshelf title="Read" books={this.state.books.filter(book => book.shelf == 'read')} />
+                <Bookshelf {...this.props} onNewShelfSelected={(book, shelf) => this.updateShelf(book, shelf)} title="Currently Reading" books={this.state.books.filter(book => book.shelf == 'currentlyReading')} />
+                <Bookshelf {...this.props} onNewShelfSelected={(book, shelf) => this.updateShelf(book, shelf)} title="Want to Read" books={this.state.books.filter(book => book.shelf == 'wantToRead')} />
+                <Bookshelf {...this.props} onNewShelfSelected={(book, shelf) => this.updateShelf(book, shelf)} title="Read" books={this.state.books.filter(book => book.shelf == 'read')} />
               </div>
             </div>
             <div className="open-search">
