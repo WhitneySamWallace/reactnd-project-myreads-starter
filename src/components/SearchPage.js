@@ -17,7 +17,21 @@ class SearchPage extends Component {
         if (searchTerm !== '') {
             BooksAPI.search(searchTerm)
             .then(booksFromApi => {
-                this.setState({ books: booksFromApi })
+                if (booksFromApi.error == undefined) {
+
+                    const processedBooks = booksFromApi.map(searchResultBook => {
+                        // Don't use "The Linux Command Line" for testing -- there are three duplicate results, each with a different ID.
+                        const match = this.props.books.find(element => element.id === searchResultBook.id);
+                        if(match) {
+                            searchResultBook.shelf = match.shelf;
+                        }
+                        return searchResultBook;
+                    });
+
+                    this.setState({ books: processedBooks });
+                } else {
+                    this.setState({ books: [] });
+                }
             })
         }
     }
@@ -27,11 +41,16 @@ class SearchPage extends Component {
     }
 
     render() {
+
+        const searchResults = (this.state.books.length > 0)
+        ? <BookList books={this.state.books} onNewShelfSelected={this.props.onNewShelfSelected} />
+        : <h2>No results found</h2>;
+
         return (
             <div className="search-books">
                 <SearchBar onSearchTermChange={searchTerm => this.searchForBooks(searchTerm)} />
                 <div className="search-books-results">
-                <BookList onNewShelfSelected={this.props.onNewShelfSelected} books={this.state.books}/>
+                    {searchResults}
                 </div>
             </div> 
         );
