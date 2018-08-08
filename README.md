@@ -1,5 +1,15 @@
 # MyReads Project
+## Udacity Front End Nanodegree
 
+This MyReads app allows users to add books to three different bookshelves: Currently Reading, Want to Read, and Read.  Users can search for books and add them to their bookshelves.  If a book returns in the search that is already on the user's bookshelf, it will reflect which shelf it is currently on in the selection menu.
+
+To install and run this MyReads app on your computer:
+
+1. Download or clone this repository
+2. Run npm install
+3. run npm start
+
+## Other Project Information
 This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
 
 Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
