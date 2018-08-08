@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BookListItem from './book_list_item';
+import BookListItem from './BookListItem';
 
 class BookList extends Component {
     render() {

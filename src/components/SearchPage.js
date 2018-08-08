@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SearchBar from './searchbar';
-import BookList from './book_list';
+import SearchBar from './SearchBar';
+import BookList from './BookList';
 import * as BooksAPI from '../BooksAPI';
 
 class SearchPage extends Component {
@@ -31,7 +31,7 @@ class SearchPage extends Component {
             <div className="search-books">
                 <SearchBar onSearchTermChange={searchTerm => this.searchForBooks(searchTerm)} />
                 <div className="search-books-results">
-                <BookList {...this.props} onNewShelfSelected={(book, shelf) => this.updateShelf(book, shelf)} books={this.state.books}/>
+                <BookList onNewShelfSelected={this.props.onNewShelfSelected} books={this.state.books}/>
                 </div>
             </div> 
         );

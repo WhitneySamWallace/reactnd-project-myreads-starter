@@ -14,7 +14,7 @@ class BookListItem extends Component {
             <li>
                 <div className="book">
                     <div className="book-top">
-                        <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: `url("${this.props.book.imageLinks.smallThumbnail}")` }}></div>
+                        <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: `url("${this.showImage(this.props.book.imageLinks)}")` }}></div>
                         <div className="book-shelf-changer">
                             <select id="mySelector" onChange={event => this.props.onNewShelfSelected(this.props.book, event.target.value)} >
                                 <option value="move" disabled>Move to...</option>
@@ -35,6 +35,12 @@ class BookListItem extends Component {
     showAuthors(authors) {
         if (authors && authors.length > 0) {
             return authors.join(', ');
+        }
+    }
+
+    showImage(image) {
+        if (image && image.smallThumbnail) {
+            return image.smallThumbnail;
         }
     }
 }
