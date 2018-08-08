@@ -16,12 +16,12 @@ class BookListItem extends Component {
                     <div className="book-top">
                         <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: `url("${this.showImage(this.props.book.imageLinks)}")` }}></div>
                         <div className="book-shelf-changer">
-                            <select id="mySelector" onChange={event => this.props.onNewShelfSelected(this.props.book, event.target.value)} >
+                            <select id="mySelector" defaultValue="none" value={this.props.book.shelf} onChange={event => this.props.onNewShelfSelected(this.props.book, event.target.value)} >
                                 <option value="move" disabled>Move to...</option>
-                                <option value="currentlyReading" selected={this.props.book.shelf === 'currentlyReading'}>Currently Reading</option>
-                                <option value="wantToRead" selected={this.props.book.shelf === 'wantToRead'}>Want to Read</option>
-                                <option value="read" selected={this.props.book.shelf === 'read'}>Read</option>
-                                <option value="none" selected={!this.props.book.shelf}>None</option>
+                                <option value="currentlyReading">Currently Reading</option>
+                                <option value="wantToRead">Want to Read</option>
+                                <option value="read">Read</option>
+                                <option value="none">None</option>
                             </select>
                         </div>
                     </div>

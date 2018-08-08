@@ -33,6 +33,8 @@ class SearchPage extends Component {
                     this.setState({ books: [] });
                 }
             })
+        } else {
+            this.setState({ books: [] })
         }
     }
 
